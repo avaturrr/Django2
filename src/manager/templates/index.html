@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>книги</h1>
+{% for book in books %}
+    <h2>{{ book.title }}</h2>
+    <h3>{{ book.text }}</h3>
+    <h4>{{ book.date }}</h4>
+    <a href="{% url 'add_like' book_id = book.id %}"><h4>{{ book.likes }}</h4></a>
+    {% if book.comments.exists %}
+        <h1>Comments:</h1>
+        {% for comment in book.comments.all %}
+            <h4>{{ comment.text }}</h4>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+</body>
+</html>
